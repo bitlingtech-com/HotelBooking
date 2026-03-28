@@ -1,10 +1,72 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Automation</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #eef2f3, #dfe9f3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1000px;
+      margin-top: 40px;
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .iframe-wrapper {
+      width: 100%;
+      height: 600px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #ddd;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    footer {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #777;
+      text-align: center;
+    }
+
+  </style>
+</head>
+
 <body>
 
-<h1>The iframe element</h1>
+  <div class="container">
+    
 
-<iframe src="https://script.google.com/macros/s/AKfycbzXsJUSd6FhNs1gKv5iqJRFmPlcpHRLKq8YfaeP_OuIrpLczlykiEl3Q0FdJyvaAKstRA/exec">
-</iframe>
+    <div class="iframe-wrapper">
+      <iframe src="https://script.google.com/macros/s/AKfycbzXsJUSd6FhNs1gKv5iqJRFmPlcpHRLKq8YfaeP_OuIrpLczlykiEl3Q0FdJyvaAKstRA/exec"></iframe>
+    </div>
+
+    <footer>
+      Powered by Google Apps Script + GitHub Pages
+    </footer>
+  </div>
 
 </body>
 </html>
