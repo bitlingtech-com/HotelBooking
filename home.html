@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Hotel Booking Automation</title>
+
+<!-- 🔥 IMPORTANT FOR MOBILE -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>Hotel Booking Dashboard</title>
 
 <style>
   body {
@@ -26,19 +30,33 @@
     color: #333;
   }
 
+  /* 🔥 IFRAME WRAPPER FIX */
   .iframe-wrapper {
+    position: relative;
     width: 100%;
-    height: 550px;
-    border-radius: 10px;
+    height: 85vh; /* dynamic height */
+    border-radius: 12px;
     overflow: hidden;
     border: 1px solid #ddd;
     margin-top: 15px;
+    background: #f9f9f9;
   }
 
   iframe {
     width: 100%;
     height: 100%;
     border: none;
+    background: white;
+  }
+
+  /* Loader */
+  .loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
+    color: #555;
   }
 
   .section-title {
@@ -47,10 +65,10 @@
     color: #333;
   }
 
-  /* 🔥 3 PER ROW GRID */
+  /* 🔥 GALLERY (3 PER ROW) */
   .gallery-wrapper {
     width: 100%;
-    padding: 0 10px 15px;
+    padding: 10px;
   }
 
   .gallery {
@@ -88,12 +106,17 @@
     text-align: center;
   }
 
-  /* 📱 MOBILE → 2 PER ROW */
+  /* 🔥 MOBILE FIX */
   @media (max-width: 600px) {
+
     .container {
       width: 100%;
       border-radius: 0;
       padding: 10px;
+    }
+
+    .iframe-wrapper {
+      height: 92vh;
     }
 
     .gallery {
@@ -104,11 +127,21 @@
     .gallery-item img {
       height: 180px;
     }
+  }
 
-    .iframe-wrapper {
-      height: auto;
-      min-height: 450px;
-    }
+  /* 🔥 FALLBACK BUTTON (VERY IMPORTANT UX) */
+  .fallback-btn {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    background: #2f5aa8;
+    color: #fff;
+    padding: 12px 18px;
+    border-radius: 25px;
+    font-size: 14px;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    z-index: 999;
   }
 
 </style>
@@ -119,17 +152,22 @@
 <div class="container">
   <h1>🏨 Hotel Booking Dashboard</h1>
 
-  <!-- Booking Form -->
+  <!-- 🔥 IFRAME WITH LOADER -->
   <div class="iframe-wrapper">
-    <iframe src="https://script.google.com/macros/s/AKfycbzXsJUSd6FhNs1gKv5iqJRFmPlcpHRLKq8YfaeP_OuIrpLczlykiEl3Q0FdJyvaAKstRA/exec"></iframe>
+    <div class="loader" id="loader">Loading booking form...</div>
+
+    <iframe 
+      src="https://script.google.com/macros/s/AKfycbzXsJUSd6FhNs1gKv5iqJRFmPlcpHRLKq8YfaeP_OuIrpLczlykiEl3Q0FdJyvaAKstRA/exec"
+      onload="hideLoader()"
+      scrolling="yes">
+    </iframe>
   </div>
 
   <h2 class="section-title">📸 Hotel Gallery</h2>
 </div>
 
-<!-- FULL WIDTH GALLERY -->
+<!-- GALLERY -->
 <div class="gallery-wrapper">
-
   <div class="gallery">
 
     <div class="gallery-item">
@@ -180,8 +218,18 @@
   </div>
 </div>
 
-<!-- FULLSCREEN VIEW -->
+<!-- 🔥 FALLBACK BUTTON -->
+<a href="https://script.google.com/macros/s/AKfycbzXsJUSd6FhNs1gKv5iqJRFmPlcpHRLKq8YfaeP_OuIrpLczlykiEl3Q0FdJyvaAKstRA/exec" 
+   target="_blank" class="fallback-btn">
+   📅 Open Form
+</a>
+
+<!-- JS -->
 <script>
+function hideLoader() {
+  document.getElementById("loader").style.display = "none";
+}
+
 function openImage(img) {
   const popup = document.createElement('div');
   popup.style = `
