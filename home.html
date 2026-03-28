@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Hotel Booking Automation</title>
+<title>Hotel Booking </title>
 
 <style>
   body {
@@ -15,11 +15,11 @@
   }
 
   .container {
-    width: 90%;
+    width: 95%;
     max-width: 1000px;
-    margin-top: 30px;
+    margin-top: 20px;
     background: #fff;
-    padding: 20px;
+    padding: 15px;
     border-radius: 12px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
   }
@@ -27,6 +27,7 @@
   h1 {
     text-align: center;
     color: #333;
+    margin-bottom: 10px;
   }
 
   .iframe-wrapper {
@@ -35,7 +36,7 @@
     border-radius: 10px;
     overflow: hidden;
     border: 1px solid #ddd;
-    margin-top: 20px;
+    margin-top: 15px;
   }
 
   iframe {
@@ -45,46 +46,75 @@
   }
 
   .section-title {
-    margin-top: 30px;
+    margin-top: 25px;
     margin-bottom: 10px;
     text-align: center;
     color: #333;
   }
 
-  .slider {
-    display: flex;
+  /* 🔥 NEW GRID GALLERY */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 12px;
-    overflow-x: auto;
-    padding: 10px;
-    scroll-behavior: smooth;
   }
 
-  .slider::-webkit-scrollbar {
-    height: 8px;
+  .gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
   }
 
-  .slider::-webkit-scrollbar-thumb {
-    background: #ccc;
-    border-radius: 10px;
-  }
-
-  .slider img {
-    height: 140px;
-    border-radius: 10px;
+  .gallery-item img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
     cursor: pointer;
     transition: transform 0.3s, box-shadow 0.3s;
   }
 
-  .slider img:hover {
-    transform: scale(1.08);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  .gallery-item:hover img {
+    transform: scale(1.05);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+  }
+
+  /* Title overlay */
+  .caption {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    font-size: 13px;
+    padding: 6px;
+    text-align: center;
   }
 
   footer {
-    margin-top: 20px;
+    margin-top: 15px;
     font-size: 14px;
     color: #777;
     text-align: center;
+  }
+
+  /* 📱 Mobile Optimization */
+  @media (max-width: 600px) {
+    .container {
+      padding: 10px;
+    }
+
+    .gallery {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gallery-item img {
+      height: 160px;
+    }
+
+    .iframe-wrapper {
+      height: auto;
+      min-height: 500px;
+    }
   }
 
 </style>
@@ -95,37 +125,95 @@
 <div class="container">
   <h1>🏨 Hotel Booking Dashboard</h1>
 
-  <!-- Apps Script Form -->
+  <!-- Booking Form -->
   <div class="iframe-wrapper">
     <iframe src="https://script.google.com/macros/s/AKfycbzXsJUSd6FhNs1gKv5iqJRFmPlcpHRLKq8YfaeP_OuIrpLczlykiEl3Q0FdJyvaAKstRA/exec"></iframe>
   </div>
 
-  <!-- Image Slider -->
+  <!-- Gallery -->
   <h2 class="section-title">📸 Hotel Gallery</h2>
 
-  <div class="slider">
-    <img src="images/hotel1.jpg" loading="lazy">
-    <img src="images/hotel2.jpg" loading="lazy">
-    <img src="images/hotel3.jpg" loading="lazy">
-    <img src="images/hotel4.jpg" loading="lazy">
-    <img src="images/hotel5.jpg" loading="lazy">
-    <img src="images/hotel6.jpg" loading="lazy">
-    <img src="images/hotel7.jpg" loading="lazy">
-    <img src="images/hotel8.jpg" loading="lazy">
-    <img src="images/hotel9.jpg" loading="lazy">
-    <img src="images/hotel10.jpg" loading="lazy">
-    <img src="images/hotel11.jpg" loading="lazy">
-    <img src="images/hotel12.jpg" loading="lazy">
-    <img src="images/hotel13.jpg" loading="lazy">
-    <img src="images/hotel14.jpg" loading="lazy">
-    <img src="images/hotel15.jpg" loading="lazy">
-    <img src="images/hotel16.jpg" loading="lazy">
-    <img src="images/hotel17.jpg" loading="lazy">
-    <img src="images/hotel18.jpg" loading="lazy">
-    <img src="images/hotel19.jpg" loading="lazy">
-    <img src="images/hotel20.jpg" loading="lazy">
+  <div class="gallery">
+
+    <div class="gallery-item">
+      <img src="images/hotel1.jpg" onclick="openImage(this)">
+      <div class="caption">Hotel Entrance</div>
+    </div>
+
+    <div class="gallery-item">
+      <img src="images/hotel2.jpg" onclick="openImage(this)">
+      <div class="caption">Reception Area</div>
+    </div>
+
+    <div class="gallery-item">
+      <img src="images/hotel3.jpg" onclick="openImage(this)">
+      <div class="caption">Deluxe Room</div>
+    </div>
+
+    <div class="gallery-item">
+      <img src="images/hotel4.jpg" onclick="openImage(this)">
+      <div class="caption">Luxury Suite</div>
+    </div>
+
+    <div class="gallery-item">
+      <img src="images/hotel5.jpg" onclick="openImage(this)">
+      <div class="caption">Restaurant</div>
+    </div>
+
+    <div class="gallery-item">
+      <img src="images/hotel6.jpg" onclick="openImage(this)">
+      <div class="caption">Dining Area</div>
+    </div>
+
+    <div class="gallery-item">
+      <img src="images/hotel7.jpg" onclick="openImage(this)">
+      <div class="caption">Conference Hall</div>
+    </div>
+
+    <div class="gallery-item">
+      <img src="images/hotel8.jpg" onclick="openImage(this)">
+      <div class="caption">Lobby Lounge</div>
+    </div>
+
+    <div class="gallery-item">
+      <img src="images/hotel9.jpg" onclick="openImage(this)">
+      <div class="caption">Swimming Pool</div>
+    </div>
+
+    <div class="gallery-item">
+      <img src="images/hotel10.jpg" onclick="openImage(this)">
+      <div class="caption">Night View</div>
+    </div>
+
   </div>
+
 </div>
+
+<!-- 🔍 Fullscreen Image Viewer -->
+<script>
+function openImage(img) {
+  const popup = document.createElement('div');
+  popup.style = `
+    position:fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    background:rgba(0,0,0,0.85);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:999;
+  `;
+
+  const bigImg = document.createElement('img');
+  bigImg.src = img.src;
+  bigImg.style = "max-width:90%; max-height:90%; border-radius:10px;";
+
+  popup.appendChild(bigImg);
+  popup.onclick = () => popup.remove();
+
+  document.body.appendChild(popup);
+}
+</script>
 
 </body>
 </html>
