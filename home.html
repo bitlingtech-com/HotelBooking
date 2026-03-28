@@ -2,22 +2,19 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Hotel Booking </title>
+<title>Hotel Booking Automation</title>
 
 <style>
   body {
     margin: 0;
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg, #eef2f3, #dfe9f3);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   }
 
   .container {
     width: 95%;
-    max-width: 1000px;
-    margin-top: 20px;
+    max-width: 900px;
+    margin: 15px auto;
     background: #fff;
     padding: 15px;
     border-radius: 12px;
@@ -27,12 +24,11 @@
   h1 {
     text-align: center;
     color: #333;
-    margin-bottom: 10px;
   }
 
   .iframe-wrapper {
     width: 100%;
-    height: 600px;
+    height: 550px;
     border-radius: 10px;
     overflow: hidden;
     border: 1px solid #ddd;
@@ -46,74 +42,72 @@
   }
 
   .section-title {
-    margin-top: 25px;
-    margin-bottom: 10px;
+    margin: 20px 0 10px;
     text-align: center;
     color: #333;
   }
 
-  /* 🔥 NEW GRID GALLERY */
+  /* 🔥 3 PER ROW GRID */
+  .gallery-wrapper {
+    width: 100%;
+    padding: 0 10px 15px;
+  }
+
   .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 12px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
   }
 
   .gallery-item {
     position: relative;
-    overflow: hidden;
     border-radius: 12px;
+    overflow: hidden;
   }
 
   .gallery-item img {
     width: 100%;
-    height: 180px;
+    height: 220px;
     object-fit: cover;
     cursor: pointer;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s;
   }
 
   .gallery-item:hover img {
     transform: scale(1.05);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.2);
   }
 
-  /* Title overlay */
   .caption {
     position: absolute;
     bottom: 0;
     width: 100%;
-    background: rgba(0,0,0,0.6);
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
     color: #fff;
-    font-size: 13px;
-    padding: 6px;
-    text-align: center;
-  }
-
-  footer {
-    margin-top: 15px;
     font-size: 14px;
-    color: #777;
+    padding: 8px;
     text-align: center;
   }
 
-  /* 📱 Mobile Optimization */
+  /* 📱 MOBILE → 2 PER ROW */
   @media (max-width: 600px) {
     .container {
+      width: 100%;
+      border-radius: 0;
       padding: 10px;
     }
 
     .gallery {
       grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
     }
 
     .gallery-item img {
-      height: 160px;
+      height: 180px;
     }
 
     .iframe-wrapper {
       height: auto;
-      min-height: 500px;
+      min-height: 450px;
     }
   }
 
@@ -130,8 +124,11 @@
     <iframe src="https://script.google.com/macros/s/AKfycbzXsJUSd6FhNs1gKv5iqJRFmPlcpHRLKq8YfaeP_OuIrpLczlykiEl3Q0FdJyvaAKstRA/exec"></iframe>
   </div>
 
-  <!-- Gallery -->
   <h2 class="section-title">📸 Hotel Gallery</h2>
+</div>
+
+<!-- FULL WIDTH GALLERY -->
+<div class="gallery-wrapper">
 
   <div class="gallery">
 
@@ -180,16 +177,10 @@
       <div class="caption">Swimming Pool</div>
     </div>
 
-    <div class="gallery-item">
-      <img src="images/hotel10.jpg" onclick="openImage(this)">
-      <div class="caption">Night View</div>
-    </div>
-
   </div>
-
 </div>
 
-<!-- 🔍 Fullscreen Image Viewer -->
+<!-- FULLSCREEN VIEW -->
 <script>
 function openImage(img) {
   const popup = document.createElement('div');
@@ -197,7 +188,7 @@ function openImage(img) {
     position:fixed;
     top:0; left:0;
     width:100%; height:100%;
-    background:rgba(0,0,0,0.85);
+    background:rgba(0,0,0,0.9);
     display:flex;
     align-items:center;
     justify-content:center;
@@ -206,7 +197,7 @@ function openImage(img) {
 
   const bigImg = document.createElement('img');
   bigImg.src = img.src;
-  bigImg.style = "max-width:90%; max-height:90%; border-radius:10px;";
+  bigImg.style = "max-width:95%; max-height:95%; border-radius:10px;";
 
   popup.appendChild(bigImg);
   popup.onclick = () => popup.remove();
